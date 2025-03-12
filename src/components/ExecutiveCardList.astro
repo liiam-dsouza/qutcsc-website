@@ -1,0 +1,15 @@
+---
+import ExecutiveCard from "./ExecutiveCard.astro"
+
+import data from "../data/executives"
+const { executives } = data
+---
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+    {
+        executives.map(executive => {
+            return(
+                <ExecutiveCard imagePath={executive.photo} name={executive.name} position={executive.position} linkedin={executive.linkedin} />
+            )
+        })
+    }
+</div>

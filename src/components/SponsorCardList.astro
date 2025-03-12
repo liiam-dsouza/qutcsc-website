@@ -1,0 +1,15 @@
+---
+import data from "../data/sponsors"
+const { sponsors } = data
+import SponsorCard from "./SponsorCard.astro"
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8 place-items-center">
+    {
+        sponsors.map(sponsor => {
+            return(
+                <SponsorCard imagePath={sponsor.logo} name={sponsor.name} industry={sponsor.industry} website={sponsor.website} about={sponsor.about} tier={sponsor.tier} />
+            )
+        })
+    }
+</div>

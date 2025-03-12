@@ -1,0 +1,28 @@
+---
+import Title from "../components/Title.astro"
+import Wrapper from "../components/Wrapper.astro"
+import Layout from "../layouts/Layout.astro"
+import ExecutiveCardList from "../components/ExecutiveCardList.astro"
+---
+
+<Layout title="About">
+    <Wrapper>
+        <Title text="About" icon="tabler:info-square-rounded" />
+
+        <div class="flex space-y-4 flex-col my-8">
+            <p class="text-lg md:text-xl">
+                The QUT Cyber Security Club (QUTCSC) is a student-led community dedicated to exploring and advancing knowledge in cyber security. We provide a platform for students to develop their skills in ethical hacking, digital forensics, penetration testing, and defensive security strategies through hands-on workshops, capture-the-flag (CTF) competitions, and industry networking opportunities.
+                Our club fosters a collaborative environment where students of all skill levels—from beginners to experienced hackers—can learn, practice, and compete in offensive and defensive security challenges.
+            </p>
+    
+            <p class="text-lg md:text-xl">
+                We actively participate in local and national CTF events, equipping members with practical experience in real-world cyber threats and security best practices.
+                By joining QUTCSC, you'll gain access to industry professionals, mentorship opportunities, and technical training that will help prepare you for a career in cyber security. Whether you're looking to sharpen your skills, connect with like-minded individuals, or break into the field, QUTCSC is the perfect place to start.
+                Join us and become part of the next generation of cyber security professionals! 
+            </p>
+        </div>
+
+        <Title text="Executive Team" icon="tabler:users-group" />
+        <ExecutiveCardList />
+    </Wrapper>
+</Layout>

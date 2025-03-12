@@ -1,0 +1,37 @@
+---
+// Importing button component and image processor
+import Button from "./Button.astro"
+import type { ImageMetadata } from "astro"
+import { Image } from "astro:assets"
+
+interface Props {
+    imagePath: string
+    name: string
+    position: string
+    linkedin: string
+}
+
+// Destructuring interface props
+const { imagePath, name, position, linkedin } = Astro.props
+
+// Importing images from headshots asset folder
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/headshots/*.{jpeg,jpg,png}")
+if ( !images[imagePath] ) throw new Error(` "${imagePath}" does not exist in glob: "/src/assets/headshots/*.{jpeg,jpg,png}" `)
+---
+
+<!-- Executive Card -->
+<div class="flex flex-col gap-y-2 items-center">
+    <Image src={ images[imagePath]() } alt={ name } class="size-80 object-cover" />
+    <span class="font-semibold uppercase text-xl">{ name }</span>
+    <span class="text-md pb-2">{ position }</span>
+    <Button 
+        text="LinkedIn" 
+        type="link" 
+        path={ linkedin }
+        isBordered={ true } 
+        icon ={ {
+            name: "tabler:brand-linkedin",
+            side: "left"
+        }}  
+    />
+</div>

@@ -1,0 +1,41 @@
+---
+// Importing button component and image processor
+import Button from "./Button.astro"
+import type { ImageMetadata } from "astro"
+import { Image } from "astro:assets"
+
+interface Props {
+    imagePath: string
+    name: string
+    industry: string
+    about: string
+    website: string
+    tier: string
+}
+
+// Destructuring interface props
+const { imagePath, name, industry, about, website, tier } = Astro.props
+
+// Importing images from headshots asset folder
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sponsors/*.{jpeg,jpg,png}")
+if ( !images[imagePath] ) throw new Error(` "${imagePath}" does not exist in glob: "/src/assets/headshots/*.{jpeg,jpg,png}" `)
+---
+
+<!-- Sponsor Card -->
+<div class="flex flex-col gap-y-2 items-center">
+    <Image src={ images[imagePath]() } alt={ name } class="p-4 object-contain border rounded-lg" />
+    <span class="font-semibold uppercase text-xl"><span class="text-primary">{ tier }</span> | { name }</span>
+    <span class="text-md pb-2 text-center">{ about }</span>
+    <Button 
+        text="Learn More" 
+        type="link" 
+        path={ website }
+        isBordered={ true } 
+        isAnimated={ true }
+        isRounded={ true }
+        icon ={ {
+            name: "tabler:chevron-right",
+            side: "right"
+        }}  
+    />
+</div>
